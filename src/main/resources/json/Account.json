@@ -1,0 +1,29 @@
+{
+  "javaType": "com.limit.autogen.Account",
+  "type": "object",
+  "properties": {
+      "productType": {
+        "type": "string"
+      },
+
+    "productCode": {
+      "type": "string"
+    },
+    "accountNumber": {
+      "type": "string"
+    },
+    "currency": {
+      "type": "string"
+    },
+    "orgCode": {
+      "type": "string"
+    },
+    "bankId": {
+      "type": "string"
+    },
+    "branchId": {
+      "type": "string"
+    }
+
+  }
+}

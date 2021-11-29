@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.0</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.fuji</groupId>
+	<artifactId>fuji-services</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>fuji-services</name>
+	<description>Services forFUJI project</description>
+	<properties>
+		<java.version>11</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!-- Swagger UI -->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-ui</artifactId>
+			<version>1.5.9</version>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
+			<version>2.1.1.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-contract-wiremock -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-contract-wiremock</artifactId>
+			<version>2.1.2.RELEASE</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.cloud/spring-cloud-starter-contract-stub-runner -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-contract-stub-runner</artifactId>
+			<version>2.2.1.RELEASE</version>
+			<exclusions>
+				<exclusion>
+					<groupId>handleBars</groupId>
+					<artifactId>com.github.jknack</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+
+		<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<version>2.6.0</version>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vinatge-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jsonschema2pojo</groupId>
+				<artifactId>jsonschema2pojo-maven-plugin</artifactId>
+				<version>1.0.1</version>
+				<configuration>
+					<sourceDirectory>${project.basedir}/src/main/resources/json</sourceDirectory>
+					<outputDirectory>${project.basedir}/target/generated-artifacts</outputDirectory>
+				</configuration>
+				<executions>
+					<execution>
+						<goals>
+							<goal>generate</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+<!--			<plugin>-->
+<!--				<groupId>org.springframework.cloud</groupId>-->
+<!--				<artifactId>spring-cloud-contract-maven-plugin</artifactId>-->
+<!--				<version>2.1.1.RELEASE</version>-->
+<!--				<extensions>true</extensions>-->
+<!--				<configuration>-->
+<!--					<testFramework>JUNIT5</testFramework>-->
+<!--					<contractsDirectory>${project.basedir}/src/test/resources/contracts</contractsDirectory>-->
+<!--					<testMode>EXPLICIT</testMode>-->
+<!--					<baseClassMappings>-->
+<!--						<baseClassMapping>-->
+<!--							<contractPackageRegex>.*limit_contract.*</contractPackageRegex>-->
+<!--							<baseClassFQN>-->
+<!--									com.fuji.LimitBaseContract-->
+<!--							</baseClassFQN>-->
+<!--						</baseClassMapping>-->
+<!--					</baseClassMappings>-->
+
+<!--				</configuration>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>default-convert</id>-->
+<!--						<configuration>-->
+<!--							<skip>true</skip>-->
+<!--						</configuration>-->
+<!--						<phase>process-test-resources</phase>-->
+<!--						<goals>-->
+<!--							<goal>convert</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--					<execution>-->
+<!--						<id>default-generateStubs</id>-->
+<!--						<configuration>-->
+<!--							<skip>true</skip>-->
+<!--						</configuration>-->
+<!--						<phase>package</phase>-->
+<!--						<goals>-->
+<!--							<goal>generateStubs</goal>-->
+<!--						</goals>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
+		</plugins>
+	</build>
+
+</project>
