@@ -23,6 +23,8 @@ public class LimitAdapterTest {
     @Mock
     private SafeWebClient safeWebClient;
 
+
+
     @Test
     public void testShuldExecuteUtilizationLimit(){
 
@@ -33,6 +35,8 @@ public class LimitAdapterTest {
                 .build();
 
         when(safeWebClient.utilizeFunds(any())).thenReturn(testData());
+
+
 
        UpdateLimits updateLimits = limitAdapter.utilizeLimits(limitRequest);
 
